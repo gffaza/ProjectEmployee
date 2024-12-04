@@ -14,6 +14,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+//testing, register, login
+Route::get("/halo","App\Http\Controllers\UserController@halo");
+Route::post("/register","App\Http\Controllers\UserController@register");
+Route::post("/login","App\Http\Controllers\UserController@login");
+
+//list pegawai
+Route::get("/pegawai/{id}","App\Http\Controllers\PegawaiController@detailPegawai");
+Route::get("/pegawai","App\Http\Controllers\PegawaiController@listPegawai");                                     
+Route::post("/filtering/pegawai","App\Http\Controllers\PegawaiController@filterPegawai");                                     
+
+
+//menambahkan data pegawai
+Route::middleware('auth:sanctum')->group(function () {
+Route::post("/pegawai","App\Http\Controllers\PegawaiController@tambahPegawai");                                     
+Route::post("/pegawai/{id}","App\Http\Controllers\PegawaiController@ubahPegawai");                                     
+Route::delete("/pegawai/{id}","App\Http\Controllers\PegawaiController@hapusPegawai");                                     
 });
+Route::get("", function () {
+    $response = [];
+    $response["kode"] = "401";
+    $response["pesan"] = "Belom Login";
+    return json_encode($response);
+})->name("login");
