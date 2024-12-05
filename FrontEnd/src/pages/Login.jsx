@@ -32,9 +32,8 @@ export default function Login() {
             title: hasil.pesan,
           });
           // Store token and user data securely
-          localStorage.setItem("accessToken", hasil.data.access_token);
-          localStorage.setItem("userData", JSON.stringify(hasil.data.user));
-          setDataLogin(hasil.data.user); // For context/state management
+          localStorage.setItem("dataLogin", JSON.stringify(hasil.data))
+          setDataLogin(hasil.data)// For context/state management
           navigate("/"); // Redirect to dashboard
         } else {
           Toast.fire({
