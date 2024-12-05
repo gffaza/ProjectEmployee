@@ -34,7 +34,7 @@ export default function Login() {
           // Store token and user data securely
           localStorage.setItem("dataLogin", JSON.stringify(hasil.data))
           setDataLogin(hasil.data)// For context/state management
-          navigate("/"); // Redirect to dashboard
+          navigate("/dashboard"); // Redirect to dashboard
         } else {
           Toast.fire({
             icon: "error",

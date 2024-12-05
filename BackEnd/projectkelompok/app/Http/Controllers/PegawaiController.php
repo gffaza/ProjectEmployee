@@ -155,7 +155,7 @@ class PegawaiController extends Controller
     }
 
     // Hapus pegawai
-    function hapusPegawai()
+    function hapusPegawai($id_pegawai)
     {
         $response = [];
         $data = Pegawai::find($id_pegawai);

@@ -17,11 +17,12 @@ export default function CardImage() {
   );
 
   function CardDefault() {
-    return (
+    return (<>
+    
       <Card className="mt-6 w-96 shadow-none">
         <CardHeader className="relative h-56 mt-1">
           <img
-            src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
+            src="https://awsimages.detik.net.id/community/media/visual/2019/10/30/68a652e2-2551-4fb2-81df-6b74574affd9.jpeg?w=505"
             alt="card-image"
           />
         </CardHeader>
@@ -32,6 +33,7 @@ export default function CardImage() {
           <Button color="teal">Change Profile Image</Button>
         </CardFooter>
       </Card>
+    </>
     );
   }
 }

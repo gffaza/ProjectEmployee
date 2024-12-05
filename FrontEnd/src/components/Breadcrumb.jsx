@@ -15,12 +15,12 @@ export function BreadcrumbsCustomSeparator() {
   return (
     <Breadcrumbs separator="-">
       <a href="#" className="opacity-60">
-        Docs
+        Direktorat
       </a>
       <a href="#" className="opacity-60">
-        Components
+        Group
       </a>
-      <a href="#">Breadcrumbs</a>
+      <a href="#">Department</a>
     </Breadcrumbs>
   );
 }

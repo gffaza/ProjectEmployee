@@ -69,7 +69,7 @@ export function DefaultSidebar() {
             <ListItemPrefix>
               <PresentationChartBarIcon className="h-5 w-5" />
             </ListItemPrefix>
-            <Link to="/" className="text-gray-800 hover:text-blue-600">
+            <Link to="/Dashboard" className="text-gray-800 hover:text-blue-600">
               Dashboard
             </Link>
           </ListItem>

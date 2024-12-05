@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App.jsx";
 import { ThemeProvider } from "@material-tailwind/react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 // import AdminMiddleware from "./middleware/AdminMiddleware.jsx";
 // import ListBuku from "./pages/ListBuku.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
@@ -21,11 +22,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Dashboard />,
+        element: <Login />,
       },
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
       },
       {
         path: "/register",

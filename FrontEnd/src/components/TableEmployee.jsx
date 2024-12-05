@@ -1,4 +1,9 @@
-import React from "react";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
+import { baseUrl, baseUrlGambar, Toast } from "../config";
+import Spinner from "../components/Spinner";
+import Swal from "sweetalert2";
+import FormTambah from "../components/FormTambah";
 
 import {
   MagnifyingGlassIcon,
@@ -26,111 +31,80 @@ import {
   IconButton,
   Tooltip,
 } from "@material-tailwind/react";
+import { LoginContext } from "../context/LoginContext";
 
-const TABS = [
-  {
-    label: "All",
-    value: "all",
-  },
-  {
-    label: "Monitored",
-    value: "monitored",
-  },
-  {
-    label: "Unmonitored",
-    value: "unmonitored",
-  },
-];
-
-const TABLE_HEAD = ["Member", "Function", "Status", "Lokasi Kerja", "Action"];
-
-const TABLE_ROWS = [
-  {
-    id_employee: 1,
-    img : "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
-    name: "Herry Gunardi",
-    job: "Direktur Utama",
-    role: "Direksi",
-    department: "-",
-    email: "qX9dG@example.com",
-    org: "Organisasi",
-    lokasi_kerja: "Jakarta Pusat",
-    status: "Active",
-  },
-  {
-    id_employee: 2,
-    img : "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-2.jpg",
-    name: "Saladdin D Effendi",
-    job: "Direktur IT",
-    role: "Direksi",
-    department: "-",
-    email: "qX9dG@example.com",
-    org: "Organisasi",
-    status: "Cuti",
-    lokasi_kerja: "Jakarta Pusat",
-  },
-  {
-    id_employee: 3,
-    img : "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
-    name: "Herry Gunardi",
-    job: "Direktur Utama",
-    role: "Direksi",
-    department: "-",
-    email: "qX9dG@example.com",
-    org: "Organisasi",
-    lokasi_kerja: "Jakarta Pusat",
-    status: "Active",
-  },
-  {
-    id_employee: 4,
-    img : "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
-    name: "Herry Gunardi",
-    job: "Direktur Utama",
-    role: "Direksi",
-    department: "-",
-    email: "qX9dG@example.com",
-    org: "Organisasi",
-    lokasi_kerja: "Jakarta Pusat",
-    status: "Active",
-  },
-  {
-    id_employee: 5,
-    img : "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-2.jpg",
-    name: "Saladdin D Effendi",
-    job: "Direktur IT",
-    role: "Direksi",
-    department: "-",
-    email: "qX9dG@example.com",
-    org: "Organisasi",
-    status: "Cuti",
-    lokasi_kerja: "Jakarta Pusat",
-  },
-  {
-    id_employee: 6,
-    img : "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-2.jpg",
-    name: "Saladdin D Effendi",
-    job: "Direktur IT",
-    role: "Direksi",
-    department: "-",
-    email: "qX9dG@example.com",
-    org: "Organisasi",
-    status: "Cuti",
-    lokasi_kerja: "Jakarta Pusat",
-  },
-  
-];
+const TABLE_HEAD = ["Employee", "Position", "Role", "Department", "Group", "Lokasi Kerja", "Action"];
 
 export default function TableEmployee() {
-  return (
-    <div>
-      <SortableTable />
-    </div>
-  );
-}
+  const [isLoading, setisLoading] = useState(false);
+  const [dataPegawai, setDataPegawai] = useState(null);
+  const {dataLogin, setDataLogin} = useContext(LoginContext);
+  // const [isOpenModalTambah, setisOpenModalTambah] = useState(false);
+  const loadData = () => {
+    setisLoading(true);
+    axios
+      .get(`${baseUrl}/pegawai`)
+      .then((response) => {
+        console.log(response.data);
+        const hasil = response.data;
+        setDataPegawai(hasil.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setisLoading(false);
+      });
+  };
 
-export function SortableTable() {
+  useEffect(() => {
+    loadData();
+    return () => {};
+  }, []);
+
+  const handleDelete = (id, nama) => {
+    Swal.fire({
+      title: "Apakah anda yakin?",
+      text: "Anda akan menghapus " + nama,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Ya, Hapus!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setisLoading(true);
+        axios
+          .delete(`${baseUrl}/pegawai/${id}`,{
+            headers:{
+              Authorization: dataLogin.access_token,
+            },
+          })
+          .then((response) => {
+            console.log(response);
+            Toast.fire({
+              icon: "success",
+              title: "Data Berhasil dihapus",
+            });
+            loadData();
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+          .finally(() => {
+            setisLoading(false);
+          });
+      }
+    });
+  };
   return (
-    <div className="flex flex-row ">
+    <>
+    {isLoading || dataPegawai === null ? (
+                <Spinner />
+            ) : (
+    
+    <div>
+      <div className="flex flex-row ">
       <div className="w-full ml-16">
         <CardHeader
           floated={false}
@@ -188,7 +162,7 @@ export function SortableTable() {
           </div>
         </div> */}
         </CardHeader>
-
+        {/* {JSON.stringify(dataPegawai)} */}
         <Card className="h-full w-full">
           <CardBody className="overflow-scroll px-0">
             <table className="mt-4 w-full min-w-max table-auto text-left">
@@ -217,32 +191,33 @@ export function SortableTable() {
                 </tr>
               </thead>
               <tbody>
-                {TABLE_ROWS.map(
-                  ({ img, name, email, job, org, status, lokasi_kerja }, index) => {
-                    const isLast = index === TABLE_ROWS.length - 1;
+
+                 {dataPegawai.map(
+                  (item, index) => {
+                    const isLast = index === dataPegawai.length - 1;
                     const classes = isLast
                       ? "p-4"
                       : "p-4 border-b border-blue-gray-50";
 
                     return (
-                      <tr key={name}>
+                      <tr key={item.id_pegawai}>
                         <td className={classes}>
                           <div className="flex items-center gap-3">
-                            <Avatar src={img} alt={name} size="sm" />
+                            <Avatar src={item.image} alt={item.nama} size="sm" />
                             <div className="flex flex-col">
                               <Typography
                                 variant="small"
                                 color="blue-gray"
                                 className="font-normal"
                               >
-                                {name}
+                                {item.nama}
                               </Typography>
                               <Typography
                                 variant="small"
                                 color="blue-gray"
                                 className="font-normal opacity-70"
                               >
-                                {email}
+                                {item.email}
                               </Typography>
                             </div>
                           </div>
@@ -254,42 +229,18 @@ export function SortableTable() {
                               color="blue-gray"
                               className="font-normal"
                             >
-                              {job}
-                            </Typography>
-                            <Typography
-                              variant="small"
-                              color="blue-gray"
-                              className="font-normal opacity-70"
-                            >
-                              {org}
+                              {item.position}
                             </Typography>
                           </div>
                         </td>
                         <td className={classes}>
-                          <div className="w-max">
-                            <Chip
-                              variant="ghost"
-                              size="sm"
-                              value={
-                                status === "Active"
-                                  ? "Active"
-                                  : status === "Cuti"
-                                  ? "Cuti"
-                                  : status === "Sakit"
-                                  ? "Sakit"
-                                  : "Non-Active"
-                              }
-                              color={
-                                status === "Active"
-                                  ? "green"
-                                  : status === "Cuti"
-                                  ? "blue-gray"
-                                  : status === "Sakit"
-                                  ? "orange"
-                                  : "red"
-                              }
-                            />
-                          </div>
+                        <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="font-normal"
+                          >
+                            {item.role}
+                          </Typography>
                         </td>
                         <td className={classes}>
                           <Typography
@@ -297,17 +248,38 @@ export function SortableTable() {
                             color="blue-gray"
                             className="font-normal"
                           >
-                            {lokasi_kerja}
+                            {item.departmen}
+                          </Typography>
+                        </td>
+                        <td className={classes}>
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="font-normal"
+                          >
+                            {item.group}
+                          </Typography>
+                        </td>
+                        
+                        <td className={classes}>
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="font-normal"
+                          >
+                            {item.lokasi_kerja}
                           </Typography>
                         </td>
                         <td className={classes}>
                           <Tooltip content="Edit User">
-                            <IconButton variant="text">
+                            <IconButton  onClick={() =>
+                        (window.location.href = `/pegawai/${item.id_pegawai}`)
+                      }  variant="text">
                               <PencilIcon className="h-4 w-4" />
                             </IconButton>
                           </Tooltip>
                           <Tooltip content="Pecat Pegawai">
-                            <IconButton variant="text">
+                            <IconButton onClick={() => handleDelete(item.id_pegawai, item.nama)} variant="text">
                               <TrashIcon className="h-4 w-4" />
                             </IconButton>
                           </Tooltip>
@@ -315,7 +287,7 @@ export function SortableTable() {
                       </tr>
                     );
                   }
-                )}
+                )} 
               </tbody>
             </table>
           </CardBody>
@@ -339,5 +311,15 @@ export function SortableTable() {
         </Card>
       </div>
     </div>
+    </div>
+     )}
+    </>
+  );
+}
+
+export function SortableTable() {
+  return (
+    <>
+    </>
   );
 }

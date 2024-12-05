@@ -20,17 +20,21 @@ import {
   Avatar,
   IconButton,
   Tooltip,
+
 } from "@material-tailwind/react";
 
 import {
   MagnifyingGlassIcon,
   ChevronUpDownIcon,
+  
 } from "@heroicons/react/24/outline";
 import {
   PencilIcon,
   PresentationChartBarIcon,
   TrashIcon,
+  UserCircleIcon,
   UserPlusIcon,
+
 } from "@heroicons/react/24/solid";
 
 export default function Employee() {
@@ -58,10 +62,10 @@ export function SortableTable() {
             <div className="mb-8 flex items-center justify-between gap-8">
               <div>
                 <div className="mb-1 flex items-center gap-2">
-                  <PresentationChartBarIcon className="h-10 w-10 bg-gray-100 p-2 rounded-md" />
+                  <UserCircleIcon className="h-10 w-10 bg-gray-100 p-2 rounded-md" />
 
                   <Typography variant="h5" color="blue-gray">
-                    Dashboard
+                    Employee
                   </Typography>
                 </div>
 
@@ -69,9 +73,7 @@ export function SortableTable() {
                   color="gray"
                   className="mt-1 font-normal text-start w-8/12"
                 >
-                  Gain a clear overview of employee profiles, performance
-                  metrics, and activities. Empower your team with actionable
-                  insights.
+                  View and manage all employee profiles in one place. Access detailed information, roles, and performance data effortlessly.
                 </Typography>
               </div>
             </div>
