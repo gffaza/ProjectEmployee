@@ -29,11 +29,13 @@ export default function Login() {
         if (hasil.sukses === 1) {
           Toast.fire({
             icon: "success",
-            title: hasil.message,
+            title: hasil.pesan,
           });
-          localStorage.setItem("dataLogin", JSON.stringify(hasil.data));
-          setDataLogin(hasil.data);
-          navigate("/admin");
+          // Store token and user data securely
+          localStorage.setItem("accessToken", hasil.data.access_token);
+          localStorage.setItem("userData", JSON.stringify(hasil.data.user));
+          setDataLogin(hasil.data.user); // For context/state management
+          navigate("/"); // Redirect to dashboard
         } else {
           Toast.fire({
             icon: "error",
@@ -44,6 +46,7 @@ export default function Login() {
       .catch((err) => console.log(err))
       .finally(() => setisLoading(false));
   };
+  
 
   return (
     <div className="flex h-screen w-screen overflow-hidden">

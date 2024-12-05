@@ -9,22 +9,22 @@ import TabsMaterial from "../components/TabsMaterial";
 import LogoHorizontal from "../components/LogoHorizontal";
 
 export default function Registrasi() {
-  const [isLoading, setisLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    setisLoading(true);
+    setIsLoading(true);
     axios
       .post(`${baseUrl}/register`, data)
       .then((response) => {
+        console.log(response);
         const hasil = response.data;
-        if (hasil.status === "success") {
+        if (hasil.sukses == 1) {
           Toast.fire({
             icon: "success",
             title: "Registrasi Berhasil",
@@ -33,9 +33,10 @@ export default function Registrasi() {
         }
       })
       .catch((error) => console.log(error))
-      .finally(() => setisLoading(false));
+      .finally(() => setIsLoading(false));
   };
 
+  
   return (
     <div className="h-screen w-screen grid grid-cols-2 overflow-hidden">
       {/* Form Section */}
@@ -110,7 +111,7 @@ export default function Registrasi() {
               {...register("telp", {
                 required: "Nomor Telepon Wajib diisi",
                 pattern: {
-                  value: /^[0-9]{3}-?[0-9]{2}-?[0-9]{4}$/,
+                  value: /^[0-9]{10,12}$/,
                   message: "Invalid phone number",
                 },
               })}
@@ -157,7 +158,7 @@ export default function Registrasi() {
             <input
               type="password"
               id="password_confirmation"
-              {...register("password_confirmation", {
+              {...register("ulangi", {
                 required: "Konfirmasi Password Wajib diisi",
               })}
               className={`w-full px-4 py-2 border ${

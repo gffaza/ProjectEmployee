@@ -1,7 +1,7 @@
 import Swal from "sweetalert2"
 
-const baseUrl = "http://localhost:8001/api"
-const baseUrlGambar = "http://localhost:8001/img"
+const baseUrl = "http://localhost:8000/api"
+const baseUrlGambar = "http://localhost:8000/img"
 
 
 const Toast = Swal.mixin({

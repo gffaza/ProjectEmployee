@@ -15,6 +15,7 @@ import {
   PresentationChartBarIcon,
   UserCircleIcon,
   PowerIcon,
+  PlusCircleIcon,
 } from "@heroicons/react/24/solid";
 
 export default function Sidebar() {
@@ -75,6 +76,14 @@ export function DefaultSidebar() {
           <ListItem>
             <ListItemPrefix>
               <UserCircleIcon className="h-5 w-5" />
+            </ListItemPrefix>
+            <Link to="/employee" className="text-gray-800 hover:text-blue-600">
+              Employee
+            </Link>
+          </ListItem>
+          <ListItem>
+            <ListItemPrefix>
+              <PlusCircleIcon className="h-5 w-5" />
             </ListItemPrefix>
             <Link to="/recruitment" className="text-gray-800 hover:text-blue-600">
               Recruitment
