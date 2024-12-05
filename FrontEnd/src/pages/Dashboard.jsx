@@ -23,27 +23,21 @@ import {
   InboxIcon,
   PowerIcon,
 } from "@heroicons/react/24/solid";
+import TableEmployee from "../components/TableEmployee";
 
 const Dashboard = () => {
   return (
     <>
+
       <div className="flex flex-row">
         <Sidebar />
-        <div className="m-8">
+        <div className="m-8 w-full h-full ">
           <div className="mb-8">
-            <div className="flex flex-row mb-2 p-4 align-middle">
-              <PresentationChartBarIcon className="h-10 w-10 bg-gray-300 p-2 rounded-md" />
-              <Typography className="text-xl font-semibold ml-4 ">
-                Dashboard
-              </Typography>
-            </div>
             <Typography className="text-md text-start font-regular ml-4">
-              Gain a clear overview of employee profiles, performance metrics,
-              and activities. Empower your team with actionable insights.
             </Typography>
           </div>
 
-          <EmployeeTable />
+          <TableEmployee />
         </div>
       </div>
     </>

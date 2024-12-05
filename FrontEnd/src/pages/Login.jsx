@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { baseUrl } from "../config";
 import { LoginContext } from "../context/LoginContext";
 import TabsMaterial from "../components/TabsMaterial";
+import LogoHorizontal from "../components/LogoHorizontal";
 
 export default function Login() {
   const [isLoading, setisLoading] = useState(false);
@@ -48,7 +49,9 @@ export default function Login() {
     <div className="flex h-screen w-screen overflow-hidden">
       {/* Left Column - Form */}
       <div className="flex flex-col justify-center items-center w-1/2 bg-white p-8">
+      <LogoHorizontal />
         <div className="w-full max-w-md">
+          
           <form className="bg-white p-6 rounded-lg">
             <TabsMaterial />
           </form>

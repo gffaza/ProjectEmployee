@@ -3,6 +3,8 @@ import Sidebar from "../components/Sidebar";
 import {
   PresentationChartBarIcon,
   UserCircleIcon,
+  PowerIcon,
+  UserPlusIcon,
 } from "@heroicons/react/24/solid";
 import {
   Typography,
@@ -10,27 +12,42 @@ import {
   Input,
   Checkbox,
   Button,
+  CardHeader,
 } from "@material-tailwind/react";
 import CardImage from "../components/CardImage";
 import { Form } from "react-router-dom";
 
 export default function Recruitment() {
   return (
-    <div className="flex flex-row h-screen">
+    <div className="flex flex-row ">
       <Sidebar />
-      <div className="m-8">
-        <div className="mb-8">
-          <div className="flex flex-row mb-2 p-4 align-middle">
-            <UserCircleIcon className="h-10 w-10 bg-gray-300 p-2 rounded-md" />
-            <Typography className="text-xl font-semibold ml-4 ">
-              Recruitment
-            </Typography>
+      
+      <div className="w-full ml-16">
+        <CardHeader
+          floated={false}
+          shadow={false}
+          className="rounded-none mb-4"
+        >
+          <div className="mb-8 flex items-center justify-between gap-8">
+            <div>
+              <div className="mb-1 flex items-center gap-2">
+                <UserCircleIcon className="h-10 w-10 bg-gray-100 p-2 rounded-md" />
+
+                <Typography variant="h5" color="blue-gray">
+                  Recruitment
+                </Typography>
+              </div>
+
+              <Typography
+                color="gray"
+                className="mt-1 font-normal text-start w-8/12"
+              >
+                Create a comprehensive employee profile to get them started. Add
+                personal details, roles, and responsibilities seamlessly.
+              </Typography>
+            </div>
           </div>
-          <Typography className="text-md text-start font-regular ml-4">
-            Create a comprehensive employee profile to get them started. Add
-            personal details, roles, and responsibilities seamlessly.
-          </Typography>
-        </div>
+        </CardHeader>
         <div className="grid-rows-2">
           {/* change profile image */}
           <div className="flex flex-row grid-cols-3">
@@ -227,14 +244,14 @@ export default function Recruitment() {
           </div>
 
           {/* button save changes */}
-          <div className="flex flex-row grid-cols-2 items-end mt-40 text-center">
-                <button className="  text-gray font-bold py-2 px-4 rounded ml-1 flex items-center justify-center w-full">
-                  Cancel
-                </button>
-                <button className="bg-teal-300 hover:bg-teal-500 text-white font-bold py-2 px-4 rounded ml-1 flex items-center justify-center w-full">
-                  Save Changes
-                </button>
-              </div>
+          {/* <div className="flex flex-row grid-cols-2 items-end mt-40 text-center">
+            <button className="  text-gray font-bold py-2 px-4 rounded ml-1 flex items-center justify-center w-full">
+              Cancel
+            </button>
+            <button className="bg-teal-300 hover:bg-teal-500 text-white font-bold py-2 px-4 rounded ml-1 flex items-center justify-center w-full">
+              Save Changes
+            </button>
+          </div> */}
           {/* <div
             className="absolute bottom-20 right-48 flex flex-row grid-cols-2 align-text-bottom mb-4 ml-4"
           >
