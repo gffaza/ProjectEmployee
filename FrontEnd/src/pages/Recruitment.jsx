@@ -18,6 +18,7 @@ import {
 import CardImage from "../components/CardImage";
 import { Form } from "react-router-dom";
 import EmployeeForm from "../components/EmployeeForm";
+import FormTambah from "../components/FormTambah";
 
 export default function Recruitment() {
   return (
@@ -52,7 +53,7 @@ export default function Recruitment() {
             </div>
           </div>
         </CardHeader>
-        <EmployeeForm />
+        <FormTambah />
       </div>
     </div>
   );

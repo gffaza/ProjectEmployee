@@ -191,6 +191,7 @@ export default function TableEmployee() {
                 </tr>
               </thead>
               <tbody>
+                {/* <img src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" /> */}
 
                  {dataPegawai.map(
                   (item, index) => {
