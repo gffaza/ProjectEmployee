@@ -5,6 +5,7 @@ import Spinner from "../components/Spinner";
 import Swal from "sweetalert2";
 import FormTambah from "../components/FormTambah";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import {
   MagnifyingGlassIcon,
@@ -23,11 +24,7 @@ import {
   Typography,
   Button,
   CardBody,
-  Chip,
   CardFooter,
-  Tabs,
-  TabsHeader,
-  Tab,
   Avatar,
   IconButton,
   Tooltip,
@@ -40,6 +37,8 @@ export default function TableEmployee() {
   const [isLoading, setisLoading] = useState(false);
   const [dataPegawai, setDataPegawai] = useState(null);
   const {dataLogin, setDataLogin} = useContext(LoginContext);
+  const navigate = useNavigate();
+
   // const [isOpenModalTambah, setisOpenModalTambah] = useState(false);
   const loadData = () => {
     setisLoading(true);
@@ -257,9 +256,7 @@ export default function TableEmployee() {
                         </td>
                         <td className={classes}>
                           <Tooltip content="Edit User">
-                            <IconButton  onClick={() =>
-                        (window.location.href = `/pegawai/${item.id_pegawai}`)
-                      }  variant="text">
+                            <IconButton  onClick={() => navigate(`/detailpegawai/${item.id_pegawai}`)}  variant="text">
                               <PencilIcon className="h-4 w-4" />
                             </IconButton>
                           </Tooltip>

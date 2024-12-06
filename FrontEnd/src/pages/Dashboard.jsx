@@ -28,18 +28,16 @@ import TableEmployee from "../components/TableEmployee";
 const Dashboard = () => {
   return (
     <>
-
       <div className="flex flex-row">
         <Sidebar />
         <div className="m-8 w-full h-full ">
           <div className="mb-8">
-            <Typography className="text-md text-start font-regular ml-4">
-            </Typography>
+            <Typography className="text-md text-start font-regular ml-4"></Typography>
           </div>
-<div className="m-8"> <TableEmployee />
-
-</div>
-         
+          <div className="m-8">
+            {" "}
+            <TableEmployee />
+          </div>
         </div>
       </div>
     </>

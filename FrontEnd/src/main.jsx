@@ -13,6 +13,7 @@ import Error from "./pages/Error.jsx";
 import Register from "./pages/Register.jsx";
 import Employee from "./pages/Employee.jsx";
 import Recruitment from "./pages/Recruitment.jsx";
+import DetailPegawai from "./pages/DetailPegawai.jsx";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: "/recruitment",
         element: <Recruitment />,
+      },
+      {
+        path: "/detailpegawai/:id",
+        element: <DetailPegawai />,
       },
       // {
       //   path: '/',

@@ -94,7 +94,7 @@ export function ProfileCard() {
                       </Typography>
                     </CardBody>
                     <CardFooter>
-                      <Link to={`/recruitment/${item.id_pegawai}`} className="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded">
+                      <Link to={`/detailpegawai/${item.id_pegawai}`} className="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded">
                         Lihat Profile Pegawai
                       </Link>
                     </CardFooter>

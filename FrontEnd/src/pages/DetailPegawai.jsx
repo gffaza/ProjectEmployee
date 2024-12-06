@@ -1,3 +1,4 @@
+
 import React from "react";
 import Sidebar from "../components/Sidebar";
 import {
@@ -8,8 +9,9 @@ import {
   CardHeader,
 } from "@material-tailwind/react";
 import FormTambah from "../components/FormTambah";
+import FormDetail from "../components/FormDetail";
 
-export default function Recruitment() {
+export default function DetailPegawai() {
   return (
     <div className="flex flex-row ">
       <Sidebar />
@@ -42,7 +44,7 @@ export default function Recruitment() {
             </div>
           </div>
         </CardHeader>
-        <FormTambah />
+        <FormDetail />
       </div>
     </div>
   );
