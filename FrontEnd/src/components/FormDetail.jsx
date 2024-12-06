@@ -85,7 +85,7 @@ export default function FormDetail() {
     fData.append("image", data.image[0]); // Ambil file dari array
     fData.append("stok", data.stok);
     axios
-      .post(`${baseUrl}/pegawai`, fData, {
+      .post(`${baseUrl}/pegawai/${id}`, fData, {
         headers: {
           Authorization: `Bearer ${dataLogin.access_token}`,
         },
@@ -99,7 +99,7 @@ export default function FormDetail() {
             title: hasil.pesan,
           });
           reset();
-          navigate("/recruitment");
+          navigate("/detailpegawai/:id");
         }
       })
       .catch((err) => {
@@ -165,7 +165,7 @@ export default function FormDetail() {
                         Nama Lengkap
                       </label>
                       <input
-                        value={dataPegawai.nama}
+                        placeholder={dataPegawai.nama}
                         type="text"
                         {...register("nama", {
                           required: "Nama Buku harus diisi",
@@ -186,7 +186,7 @@ export default function FormDetail() {
                         Email
                       </label>
                       <input
-                        value={dataPegawai.email}
+                        placeholder={dataPegawai.email}
                         type="text"
                         {...register("email", {
                           required: "Nama Buku harus diisi",
@@ -207,7 +207,7 @@ export default function FormDetail() {
                         No Telp
                       </label>
                       <input
-                        value={dataPegawai.telp}
+                        placeholder={dataPegawai.telp}
                         type="text"
                         {...register("telp", {
                           required: "Nama Buku harus diisi",
@@ -229,7 +229,7 @@ export default function FormDetail() {
                         Tanggal Lahir
                       </label>
                       <input
-                        value={dataPegawai.tgl_lahir}
+                        placeholder={dataPegawai.tgl_lahir}
                         type="date"
                         {...register("tgl_lahir", {
                           required: "Tanggal lahir harus diisi",
@@ -256,13 +256,13 @@ export default function FormDetail() {
                         On Boarding
                       </label>
                       <input
-                        value={dataPegawai.onboard}
+                        placeholder={dataPegawai.onboard}
                         type="date"
                         {...register("onboard", {
                           required: "Tanggal On Board harus diisi",
-                          validate: (value) =>
-                            new Date(value) > new Date() ||
-                            "Harus lebih dari hari ini",
+                          // validate: (value) =>
+                          //   new Date(value) > new Date() ||
+                          //   "Harus lebih dari hari ini",
                         })}
                         className={`w-full p-2 border rounded ${
                           errors.onboard ? "border-red-500" : "border-gray-300"
@@ -311,7 +311,7 @@ export default function FormDetail() {
                         Position
                       </label>
                       <input
-                        value={dataPegawai.position}
+                        placeholder={dataPegawai.position}
                         type="text"
                         {...register("position", {
                           required: "Nama Buku harus diisi",
@@ -332,7 +332,7 @@ export default function FormDetail() {
                         Group
                       </label>
                       <input
-                        value={dataPegawai.group}
+                        placeholder={dataPegawai.group}
                         type="text"
                         {...register("group", {
                           required: "Group penempatan harus diisi",
@@ -353,7 +353,7 @@ export default function FormDetail() {
                         Departmen
                       </label>
                       <input
-                        value={dataPegawai.departmen}
+                        placeholder={dataPegawai.departmen}
                         type="text"
                         {...register("departmen", {
                           required: "Nama Buku harus diisi",
@@ -376,7 +376,7 @@ export default function FormDetail() {
                         Lokasi Kerja
                       </label>
                       <input
-                        value={dataPegawai.lokasi_kerja}
+                        placeholder={dataPegawai.lokasi_kerja}
                         type="text"
                         {...register("lokasi_kerja", {
                           required: "Nama Buku harus diisi",
@@ -415,7 +415,7 @@ export default function FormDetail() {
                       type="submit"
                       className="w-full h-fit basis-1/3 bg-teal-300 text-white p-2 rounded hover:bg-teal-400"
                     >
-                      Tambah Pegawai
+                      Simpan Perubahan
                     </button>
                   )}
                 </div>

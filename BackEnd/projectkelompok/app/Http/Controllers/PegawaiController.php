@@ -185,7 +185,7 @@ class PegawaiController extends Controller
             "departmen" => "required",
             "group" => "required",
             "lokasi_kerja" => "required",
-            "image" => "nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048"
+            "image" => "image|mimes:jpeg,png,jpg,gif,svg|max:2048"
         ];
         $attributes = [
             "nama" => "Nama Lengkap",
