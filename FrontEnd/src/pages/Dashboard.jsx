@@ -36,8 +36,10 @@ const Dashboard = () => {
             <Typography className="text-md text-start font-regular ml-4">
             </Typography>
           </div>
+<div className="m-8"> <TableEmployee />
 
-          <TableEmployee />
+</div>
+         
         </div>
       </div>
     </>

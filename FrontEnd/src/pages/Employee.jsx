@@ -20,13 +20,11 @@ import {
   Avatar,
   IconButton,
   Tooltip,
-
 } from "@material-tailwind/react";
 
 import {
   MagnifyingGlassIcon,
   ChevronUpDownIcon,
-  
 } from "@heroicons/react/24/outline";
 import {
   PencilIcon,
@@ -34,7 +32,6 @@ import {
   TrashIcon,
   UserCircleIcon,
   UserPlusIcon,
-
 } from "@heroicons/react/24/solid";
 
 export default function Employee() {
@@ -73,7 +70,9 @@ export function SortableTable() {
                   color="gray"
                   className="mt-1 font-normal text-start w-8/12"
                 >
-                  View and manage all employee profiles in one place. Access detailed information, roles, and performance data effortlessly.
+                  View and manage all employee profiles in one place. Access
+                  detailed information, roles, and performance data
+                  effortlessly.
                 </Typography>
               </div>
             </div>
@@ -81,9 +80,10 @@ export function SortableTable() {
         </div>
       </div>
       <div className="space-8">
-        
         <Breadcrumb />
-        <CardEmployee />
+        {/* <div className="grid grid-cols-4 gap-8"> */}
+          <CardEmployee />
+        {/* </div> */}
       </div>
     </div>
   );

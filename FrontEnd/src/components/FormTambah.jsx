@@ -129,11 +129,11 @@ export default function FormTambah() {
                   </div>
                   {/* helo */}
                   <label className="block ">
-                    <span className="sr-only">Choose Photo Profiel</span>
+                    <span className="sr-only">Choose Photo</span>
                     <input
                       type="file"
                       accept="image/*"
-                      {...register("image", { required: "Image harus diisi" })}
+                      {...register("image", { required: "Image" })}
                       onChange={handleFileChange}
                       className="block w-full text-sm text-slate-500
                         file:mr-4 file:py-2 file:px-4

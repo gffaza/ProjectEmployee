@@ -4,6 +4,7 @@ import { baseUrl, baseUrlGambar, Toast } from "../config";
 import Spinner from "../components/Spinner";
 import Swal from "sweetalert2";
 import FormTambah from "../components/FormTambah";
+import { Link } from "react-router-dom";
 
 import {
   MagnifyingGlassIcon,
@@ -133,9 +134,9 @@ export default function TableEmployee() {
               {/* <Button variant="outlined" size="sm">
                 view all
               </Button> */}
-              <Button className="flex items-center gap-3" size="sm">
+              <Link to="/recruitment" className="flex bg-gray-200 py-2 px-4 rounded-lg items-center gap-3" size="sm">
                 <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Add Employee
-              </Button>
+              </Link>
             </div>
           </div>
           <div className="w-full md:w-72">
@@ -144,23 +145,6 @@ export default function TableEmployee() {
               icon={<MagnifyingGlassIcon className="h-5 w-5" />}
             />
           </div>
-          {/* <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-          <Tabs value="all" className="w-full md:w-max">
-            <TabsHeader>
-              {TABS.map(({ label, value }) => (
-                <Tab key={value} value={value}>
-                  &nbsp;&nbsp;{label}&nbsp;&nbsp;
-                </Tab>
-              ))}
-            </TabsHeader>
-          </Tabs>
-          <div className="w-full md:w-72">
-            <Input
-              label="Search"
-              icon={<MagnifyingGlassIcon className="h-5 w-5" />}
-            />
-          </div>
-        </div> */}
         </CardHeader>
         {/* {JSON.stringify(dataPegawai)} */}
         <Card className="h-full w-full">
@@ -204,7 +188,7 @@ export default function TableEmployee() {
                       <tr key={item.id_pegawai}>
                         <td className={classes}>
                           <div className="flex items-center gap-3">
-                            <Avatar src={item.image} alt={item.nama} size="sm" />
+                            <Avatar src={`${baseUrlGambar}/${item.image}`} alt={item.nama} size="sm" />
                             <div className="flex flex-col">
                               <Typography
                                 variant="small"
